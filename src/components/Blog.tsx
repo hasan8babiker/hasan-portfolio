@@ -3,6 +3,7 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Clock, ArrowRight } from "lucide-react";
+import { NavLink } from "@/components/NavLink";
 
 const blogPosts = [
   {
@@ -119,8 +120,10 @@ export const Blog = () => {
         </div>
 
         <div className="text-center mt-12">
-          <Button variant="outline" size="lg" className="border-primary/50 hover:bg-primary/10">
-            View All Articles
+          <Button variant="outline" size="lg" className="border-primary/50 hover:bg-primary/10" asChild>
+            <NavLink to="/articles">
+              View All Articles
+            </NavLink>
           </Button>
         </div>
       </div>
