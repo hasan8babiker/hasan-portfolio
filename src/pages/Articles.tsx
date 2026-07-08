@@ -1,8 +1,10 @@
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Clock, ArrowRight, BookOpen } from "lucide-react";
+import { articles } from "@/data/articles";
 
 const articles = [
   {
