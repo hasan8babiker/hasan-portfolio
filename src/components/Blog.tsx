@@ -7,6 +7,7 @@ import { NavLink } from "@/components/NavLink";
 
 const blogPosts = [
   {
+    slug: "secure-your-linux-system",
     title: "How to Secure Your Linux System: A Beginner's Guide",
     excerpt: "Linux is powerful but often targeted. This guide covers essentials for hardening your setup including firewall configuration, SSH security, and user management.",
     date: "Nov 25, 2025",
@@ -14,6 +15,7 @@ const blogPosts = [
     tags: ["Linux", "Security", "Tutorial"]
   },
   {
+    slug: "hackers-abuse-misconfigurations",
     title: "How Hackers Abuse Misconfigurations",
     excerpt: "Discuss common AWS S3 bucket exposures and prevention strategies. Learn how misconfigurations lead to data breaches and how to prevent them.",
     date: "Nov 20, 2025",
@@ -21,6 +23,7 @@ const blogPosts = [
     tags: ["Cloud Security", "AWS", "Best Practices"]
   },
   {
+    slug: "python-scripts-automating-recon",
     title: "Python Scripts for Automating Recon",
     excerpt: "Code walkthrough for subdomain enumeration. Build your own reconnaissance tools using Python and automate your security workflows.",
     date: "Nov 15, 2025",
@@ -28,6 +31,7 @@ const blogPosts = [
     tags: ["Python", "Automation", "Recon"]
   },
   {
+    slug: "analyze-malware-safely",
     title: "How to Analyze Malware Safely",
     excerpt: "Using virtual machines and tools like IDA Pro for safe malware analysis. Learn the fundamentals of reverse engineering and threat analysis.",
     date: "Nov 10, 2025",
@@ -35,6 +39,7 @@ const blogPosts = [
     tags: ["Malware Analysis", "Reverse Engineering"]
   },
   {
+    slug: "threat-hunting-basics",
     title: "Threat Hunting Basics",
     excerpt: "Log analysis with Splunk and ELK stack. Master the art of proactive threat hunting and learn to identify indicators of compromise.",
     date: "Nov 5, 2025",
@@ -42,6 +47,7 @@ const blogPosts = [
     tags: ["Threat Hunting", "SIEM", "Logs"]
   },
   {
+    slug: "how-to-use-osint-tools",
     title: "How to Use OSINT Tools",
     excerpt: "Comprehensive guide to Maltego and Shodan for intelligence gathering. Discover how to leverage open-source intelligence for security research.",
     date: "Oct 30, 2025",
@@ -110,9 +116,12 @@ export const Blog = () => {
                   variant="ghost" 
                   size="sm"
                   className="w-full justify-between group-hover:text-primary"
+                  asChild
                 >
-                  Read Article
-                  <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                  <NavLink to={`/articles/${post.slug}`}>
+                    Read Article
+                    <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                  </NavLink>
                 </Button>
               </Card>
             </motion.div>
