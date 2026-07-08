@@ -80,9 +80,12 @@ const Articles = () => {
                   <Button
                     variant="ghost"
                     className="w-full justify-between group-hover:bg-primary/10 group-hover:text-primary transition-colors"
+                    asChild
                   >
-                    Read Article
-                    <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                    <Link to={`/articles/${article.slug}`}>
+                      Read Article
+                      <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                    </Link>
                   </Button>
                 </Card>
               </motion.div>
