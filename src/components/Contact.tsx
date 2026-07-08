@@ -7,36 +7,36 @@ const socialLinks = [
   {
     name: "GitHub",
     icon: Github,
-    url: "https://github.com/hasanbabiker",
-    handle: "@hasanbabiker",
+    url: "https://github.com/hasan8babiker",
+    handle: "@hasan8babiker",
     color: "hover:text-[#6e5494]"
   },
   {
     name: "LinkedIn",
     icon: Linkedin,
-    url: "https://linkedin.com/in/hasanbabiker",
+    url: "https://linkedin.com/in/hasan8babiker",
     handle: "Hasan Babiker",
     color: "hover:text-[#0077b5]"
   },
   {
     name: "Twitter/X",
     icon: Twitter,
-    url: "https://x.com/hasanbabiker",
-    handle: "@hasanbabiker",
+    url: "https://x.com/hasan8babiker",
+    handle: "@hasan8babiker",
     color: "hover:text-[#1da1f2]"
   },
   {
     name: "TikTok",
     icon: BookOpen,
-    url: "https://tiktok.com/@hasanbabiker_cyber",
-    handle: "@hasanbabiker_cyber",
+    url: "https://tiktok.com/@hasan8babiker",
+    handle: "@hasan8babiker",
     color: "hover:text-[#ff0050]"
   },
   {
     name: "Email",
     icon: Mail,
-    url: "mailto:hasan.babiker@example.com",
-    handle: "hasan.babiker@example.com",
+    url: "mailto:hasan8babiker@gmail.com",
+    handle: "hasan8babiker@gmail.com",
     color: "hover:text-primary"
   }
 ];
