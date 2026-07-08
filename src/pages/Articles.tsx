@@ -6,56 +6,6 @@ import { Badge } from "@/components/ui/badge";
 import { Clock, ArrowRight, BookOpen } from "lucide-react";
 import { articles } from "@/data/articles";
 
-const articles = [
-  {
-    title: "How to Secure Your Linux System: A Beginner's Guide",
-    excerpt: "Linux is powerful but often targeted. This guide covers essentials for hardening your setup including firewall configuration, SSH security, and user management.",
-    date: "Nov 25, 2025",
-    readTime: "8 min",
-    tags: ["Linux", "Security", "Tutorial"],
-    category: "System Security"
-  },
-  {
-    title: "How Hackers Abuse Misconfigurations",
-    excerpt: "Discuss common AWS S3 bucket exposures and prevention strategies. Learn how misconfigurations lead to data breaches and how to prevent them.",
-    date: "Nov 20, 2025",
-    readTime: "6 min",
-    tags: ["Cloud Security", "AWS", "Best Practices"],
-    category: "Cloud Security"
-  },
-  {
-    title: "Python Scripts for Automating Recon",
-    excerpt: "Code walkthrough for subdomain enumeration. Build your own reconnaissance tools using Python and automate your security workflows.",
-    date: "Nov 15, 2025",
-    readTime: "10 min",
-    tags: ["Python", "Automation", "Recon"],
-    category: "Development"
-  },
-  {
-    title: "How to Analyze Malware Safely",
-    excerpt: "Using virtual machines and tools like IDA Pro for safe malware analysis. Learn the fundamentals of reverse engineering and threat analysis.",
-    date: "Nov 10, 2025",
-    readTime: "12 min",
-    tags: ["Malware Analysis", "Reverse Engineering"],
-    category: "Malware Analysis"
-  },
-  {
-    title: "Threat Hunting Basics",
-    excerpt: "Log analysis with Splunk and ELK stack. Master the art of proactive threat hunting and learn to identify indicators of compromise.",
-    date: "Nov 5, 2025",
-    readTime: "9 min",
-    tags: ["Threat Hunting", "SIEM", "Logs"],
-    category: "Threat Hunting"
-  },
-  {
-    title: "How to Use OSINT Tools",
-    excerpt: "Comprehensive guide to Maltego and Shodan for intelligence gathering. Discover how to leverage open-source intelligence for security research.",
-    date: "Oct 30, 2025",
-    readTime: "7 min",
-    tags: ["OSINT", "Tools", "Intelligence"],
-    category: "OSINT"
-  }
-];
 
 const Articles = () => {
   return (
