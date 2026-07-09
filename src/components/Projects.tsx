@@ -6,52 +6,52 @@ import { Github, ExternalLink } from "lucide-react";
 
 const projects = [
   {
-    title: "Password Strength Checker",
+    title: "In Progress > Password Strength Checker",
     description: "Evaluates password strength based on length, complexity, and common patterns. Integrates breach checks using APIs and provides actionable feedback.",
     tools: ["Python", "Tkinter", "Regex", "APIs"],
-    github: "https://github.com/hasanbabiker/password-strength-checker"
+    github: "https://github.com/hasan8babiker/password-strength-checker"
   },
   {
-    title: "Port Scanner",
+    title: "COMING SOON!! > Port Scanner",
     description: "Custom port scanner for network reconnaissance. Scans open ports on target IPs to identify vulnerabilities with stealth modes.",
     tools: ["Python", "Socket", "Scapy", "Threading"],
-    github: "https://github.com/hasanbabiker/port-scanner"
+    github: "https://github.com/hasan8babiker/port-scanner"
   },
   {
-    title: "Subdomain Finder",
+    title: "COMING SOON!! > Subdomain Finder",
     description: "Automates subdomain enumeration using DNS queries and wordlists, useful for penetration testing to uncover hidden assets.",
     tools: ["Python", "DNS Resolver", "Sublist3r"],
-    github: "https://github.com/hasanbabiker/subdomain-finder"
+    github: "https://github.com/hasan8babiker/subdomain-finder"
   },
   {
-    title: "File Integrity Checker",
+    title: "COMING SOON!! > File Integrity Checker",
     description: "Monitors file changes using MD5/SHA-256 hashing to detect tampering, ideal for securing critical systems.",
     tools: ["Python", "Hashlib", "Logging"],
-    github: "https://github.com/hasanbabiker/file-integrity-checker"
+    github: "https://github.com/hasan8babiker/file-integrity-checker"
   },
   {
-    title: "Network Packet Sniffer",
+    title: "COMING SOON!! > Network Packet Sniffer",
     description: "Captures and analyzes network packets in real-time, displaying protocols, IPs, and payloads for traffic inspection.",
     tools: ["Python", "Scapy", "Wireshark"],
-    github: "https://github.com/hasanbabiker/packet-sniffer"
+    github: "https://github.com/hasan8babiker/packet-sniffer"
   },
   {
-    title: "Threat Intelligence Tools",
+    title: "COMING SOON!! > Threat Intelligence Tools",
     description: "Queries VirusTotal for file/hash analysis and Have I Been Pwned for breach checks, automating threat intelligence gathering.",
     tools: ["Python", "VirusTotal API", "HIBP API", "JSON"],
-    github: "https://github.com/hasanbabiker/threat-intel-tools"
+    github: "https://github.com/hasan8babiker/threat-intel-tools"
   },
   {
-    title: "Red Team Toolkit",
+    title: "COMING SOON!! > Red Team Toolkit",
     description: "Modular toolkit for red teaming including payload delivery and post-exploitation scripts for ethical penetration testing.",
     tools: ["Python", "Metasploit", "Paramiko"],
-    github: "https://github.com/hasanbabiker/red-team-tools"
+    github: "https://github.com/hasan8babiker/red-team-tools"
   },
   {
-    title: "Blue Team Dashboard",
+    title: "COMING SOON!! > Blue Team Dashboard",
     description: "Web-based dashboard for monitoring logs, alerts, and security metrics using Python backends with real-time visualization.",
     tools: ["Python", "Flask", "Matplotlib", "SQLite"],
-    github: "https://github.com/hasanbabiker/blue-team-dashboard"
+    github: "https://github.com/hasan8babiker/blue-team-dashboard"
   }
 ];
 
