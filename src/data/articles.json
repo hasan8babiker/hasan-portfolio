@@ -68,5 +68,35 @@
     "tags": ["OSINT", "Tools", "Intelligence"],
     "category": "OSINT",
     "content": "OSINT (Open Source Intelligence) is the art of gathering information from public sources.\n\n## Shodan\nThe search engine for internet-connected devices. Find exposed services:\n- `org:\"Target Corp\"` — devices belonging to an organization\n- `port:3389 country:US` — exposed RDP in the US\n\n## Maltego\nVisual link analysis for pivoting between entities: domains, emails, people, social profiles.\n\n## Other Essentials\n- theHarvester for email/subdomain gathering\n- SpiderFoot for automated OSINT\n- Google Dorking for creative searches\n\n## Ethics\nJust because information is public doesn't make every use ethical. Always operate within legal and moral boundaries."
-  }
+  },
+   {
+  "slug": "linux-for-beginners-terminal-guide",
+  "title": "Linux for Beginners: Essential Terminal Commands Every Beginner Should Know",
+  "seoTitle": "Linux for Beginners | Learn Basic Linux Terminal Commands",
+  "metaDescription": "Learn the most important Linux terminal commands for beginners. Master navigation, file management, and basic shell usage with this quick tutorial.",
+  "keywords": [
+    "Linux for beginners",
+    "Linux tutorial",
+    "Linux commands",
+    "Linux terminal",
+    "Bash commands",
+    "Ubuntu tutorial",
+    "Linux basics",
+    "Learn Linux",
+    "Linux CLI",
+    "Terminal commands"
+  ],
+  "excerpt": "New to Linux? Learn the essential terminal commands every beginner should know, including file navigation, directory management, and basic shell operations.",
+  "date": "2026-07-10",
+  "readTime": "5 min",
+  "author": "Hasan Babiker",
+  "category": "Linux",
+  "tags": [
+    "Linux",
+    "Terminal",
+    "Bash",
+    "Beginner"
+  ],
+  "content": "# Linux for Beginners\n\nLinux is one of the most widely used operating systems in the world. Whether you're interested in cybersecurity, programming, cloud computing, or system administration, learning Linux is an essential skill.\n\n## Why Learn Linux?\n\nLinux powers millions of servers, cloud platforms, and embedded devices. Understanding Linux gives you greater control over your system and opens the door to advanced technical skills.\n\n## Open the Terminal\n\nMost Linux distributions allow you to open the terminal using **Ctrl + Alt + T**.\n\n## Essential Commands\n\n### Show Current Directory\n\n```bash\npwd\n```\n\nDisplays your current working directory.\n\n### List Files\n\n```bash\nls\n```\n\nShow hidden files:\n\n```bash\nls -la\n```\n\n### Change Directory\n\n```bash\ncd Documents\n```\n\nReturn to the previous directory:\n\n```bash\ncd ..\n```\n\nGo to your home directory:\n\n```bash\ncd ~\n```\n\n### Create Files and Folders\n\n```bash\ntouch notes.txt\nmkdir projects\n```\n\n### Delete Files\n\n```bash\nrm notes.txt\n```\n\n### Display File Contents\n\n```bash\ncat notes.txt\n```\n\n## Practice\n\nCreate a folder, create a file inside it, and use the commands above until you're comfortable navigating the terminal.\n\n## Next Steps\n\nOnce you've mastered these basics, continue learning:\n\n- File permissions (`chmod`, `chown`)\n- Searching with `find` and `grep`\n- Package managers (`apt`, `dnf`, `pacman`)\n- Bash scripting\n- Networking commands (`ping`, `ip`, `ss`)\n\nBuilding strong Linux fundamentals will make learning cybersecurity and programming much easier."
+}
 ]
