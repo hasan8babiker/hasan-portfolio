@@ -39,7 +39,11 @@ const App = () => (
     <TooltipProvider>
       <Toaster />
       <Sonner />
+<<<<<<< HEAD
       <BrowserRouter basename="/hasan-portfolio/">
+=======
+      <BrowserRouter basename="/hasan-portfoilo/">
+>>>>>>> eb238427c98730e523c642c9ad6451ec67d5046f
         <RedirectHandler />
         <Routes>
           <Route path="/" element={<Index />} />
