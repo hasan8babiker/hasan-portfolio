@@ -103,7 +103,20 @@ With most operators blocked, used \`GLOB\` and comment-based obfuscation to bypa
 ## Takeaways
 - Blacklists are inherently weak — use parameterized queries instead
 - Know your SQL dialect quirks (SQLite \`GLOB\`, MySQL comments, etc.)`
-  }
+  },
+  {
+    slug : "htb-codify-writeup",
+    title : "HackTheBox Codify Writeup: Code Review to RCE",
+    platform : "HackTheBox",
+    difficulty : "Medium",
+    category : "CTF Writeup",
+    date : "2026-07-09",
+    tags : ["CTF", "HackTheBox", "RCE", "Writeup"],
+    summary : "Detailed walkthrough of the Codify machine on HackTheBox. Learn how to exploit a vulnerable code review feature leading to remote code execution.",
+    content : "Codify is a medium-difficulty HackTheBox machine that teaches code review vulnerabilities and privilege escalation.\n\n## Enumeration\nFirst, scan for open ports:\n```bash\nnmap -sV -sC 10.10.11.222\n```\nWe find SSH (port 22) and HTTP (port 3000) running a Node.js application.\n\n## Initial Access\nVisiting the web app reveals a code sandbox that executes JavaScript. Testing basic RCE payloads, we notice the app uses `vm2` library which is known to have escape vulnerabilities.\n\n## Exploitation\nThe `vm2` library has a sandbox escape. We can use:\n```javascript\nconst {VM} = require('vm2');\nconst vm = new VM();\nvm.run('this.constructor.constructor(\"return this.process.mainModule.require(\\'child_process\\').execSync(\\'id\\')\")();\n```\n\n## Foothold\nAfter RCE, we find database credentials in `.env` file. Using these, we enumerate further and find a user account.\n\n## Privilege Escalation\nThe user has sudo rights for a specific script. By analyzing the script, we can exploit a race condition to elevate to root.\n\n## Lessons Learned\n- Always update dependencies (vm2 is deprecated)\n- Input validation is critical even in sandboxes\n- Check for race conditions in privileged scripts\n- Credential management matters"
+
+  },
+
 ];
 
 export const getWriteupBySlug = (slug: string) => writeups.find(w => w.slug === slug);

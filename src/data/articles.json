@@ -1,13 +1,13 @@
 [
   {
-    "slug": "htb-codify-writeup",
-    "title": "HackTheBox Codify Writeup: Code Review to RCE",
-    "excerpt": "Detailed walkthrough of the Codify machine on HackTheBox. Learn how to exploit a vulnerable code review feature leading to remote code execution.",
-    "date": "2026-07-09",
-    "readTime": "15 min",
-    "tags": ["CTF", "HackTheBox", "RCE", "Writeup"],
-    "category": "CTF Writeup",
-    "content": "Codify is a medium-difficulty HackTheBox machine that teaches code review vulnerabilities and privilege escalation.\n\n## Enumeration\nFirst, scan for open ports:\n```bash\nnmap -sV -sC 10.10.11.222\n```\nWe find SSH (port 22) and HTTP (port 3000) running a Node.js application.\n\n## Initial Access\nVisiting the web app reveals a code sandbox that executes JavaScript. Testing basic RCE payloads, we notice the app uses `vm2` library which is known to have escape vulnerabilities.\n\n## Exploitation\nThe `vm2` library has a sandbox escape. We can use:\n```javascript\nconst {VM} = require('vm2');\nconst vm = new VM();\nvm.run('this.constructor.constructor(\"return this.process.mainModule.require(\\'child_process\\').execSync(\\'id\\')\")();\n```\n\n## Foothold\nAfter RCE, we find database credentials in `.env` file. Using these, we enumerate further and find a user account.\n\n## Privilege Escalation\nThe user has sudo rights for a specific script. By analyzing the script, we can exploit a race condition to elevate to root.\n\n## Lessons Learned\n- Always update dependencies (vm2 is deprecated)\n- Input validation is critical even in sandboxes\n- Check for race conditions in privileged scripts\n- Credential management matters"
+  "slug": "docker-security-hardening",
+  "title": "Docker Security Hardening: Best Practices",
+  "excerpt": "Learn essential Docker security practices to protect your containers in production.",
+  "date": "2026-07-10",
+  "readTime": "12 min",
+  "tags": ["Docker", "Security", "DevOps"],
+  "category": "DevOps Security",
+  "content": "# Docker Security Hardening\n\nDocker containers need proper security configuration...\n\n## Best Practices\n1. Always run containers as non-root...\n2. Use minimal base images..."
   },
   {
     "slug": "secure-your-linux-system",
