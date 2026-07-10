@@ -1,13 +1,13 @@
 [
   {
-  "slug": "docker-security-hardening",
-  "title": "Docker Security Hardening: Best Practices",
-  "excerpt": "Learn essential Docker security practices to protect your containers in production.",
-  "date": "2026-07-10",
-  "readTime": "12 min",
-  "tags": ["Docker", "Security", "DevOps"],
-  "category": "DevOps Security",
-  "content": "# Docker Security Hardening\n\nDocker containers need proper security configuration...\n\n## Best Practices\n1. Always run containers as non-root...\n2. Use minimal base images..."
+    "slug": "docker-security-hardening",
+    "title": "Docker Security Hardening: Best Practices",
+    "excerpt": "Learn essential Docker security practices to protect your containers in production.",
+    "date": "2026-07-10",
+    "readTime": "12 min",
+    "tags": ["Docker", "Security", "DevOps"],
+    "category": "DevOps Security",
+    "content": "# Docker Security Hardening\n\nDocker containers need proper security configuration to protect your applications and data in production environments.\n\n## Best Practices\n\n1. Always run containers as non-root users to limit the impact of a breach\n2. Use minimal base images like alpine to reduce attack surface\n3. Implement resource limits to prevent denial of service\n4. Regularly scan images for vulnerabilities\n5. Use secrets management for sensitive data"
   },
   {
     "slug": "secure-your-linux-system",
@@ -17,7 +17,7 @@
     "readTime": "8 min",
     "tags": ["Linux", "Security", "Tutorial"],
     "category": "System Security",
-    "content": "Linux powers most of the internet's infrastructure, which also makes it a prime target for attackers. This guide walks through the essentials of hardening a fresh Linux install.\n\n## 1. Keep Your System Updated\nRun `sudo apt update && sudo apt upgrade` regularly to patch known vulnerabilities. Consider enabling unattended-upgrades for critical security patches.\n\n## 2. Configure the Firewall\nUFW (Uncomplicated Firewall) is your first line of defense:\n- `sudo ufw default deny incoming`\n- `sudo ufw default allow outgoing`\n- `sudo ufw allow ssh`\n- `sudo ufw enable`\n\n## 3. Harden SSH\n- Disable root login: `PermitRootLogin no`\n- Use key-based authentication only: `PasswordAuthentication no`\n- Change the default port from 22\n- Install Fail2Ban to block brute-force attempts\n\n## 4. User Management\nCreate a non-root user with sudo privileges and disable direct root access. Audit `/etc/passwd` for unexpected accounts.\n\n## 5. Monitoring\nSet up log monitoring with tools like Logwatch or the ELK stack. Watch `/var/log/auth.log` for suspicious activity.\n\nSecurity is iterative — review your configuration monthly and stay informed about new CVEs."
+    "content": "Linux powers most of the internet's infrastructure, which also makes it a prime target for attackers. This guide walks through the essentials of hardening a fresh Linux install.\n\n## Disable SSH Root Access\nEdit /etc/ssh/sshd_config and set PermitRootLogin no\n\n## Enable Firewall\nUse iptables or ufw to control incoming and outgoing traffic\n\n## Regular Updates\nKeep your system packages updated to patch security vulnerabilities\n\n## User Management\nCreate separate user accounts and use sudo for privilege escalation"
   },
   {
     "slug": "python-scripts-automating-recon",
@@ -27,7 +27,7 @@
     "readTime": "10 min",
     "tags": ["Python", "Automation", "Recon"],
     "category": "Development",
-    "content": "Reconnaissance is the foundation of any pentest. Let's build a subdomain enumeration tool in Python.\n\n## Basic Structure\nUsing `dns.resolver` and `concurrent.futures`, you can check thousands of subdomains per minute:\n\n```python\nimport dns.resolver\nfrom concurrent.futures import ThreadPoolExecutor\n\ndef check_subdomain(sub, domain):\n    try:\n        dns.resolver.resolve(f\"{sub}.{domain}\", \"A\")\n        return f\"{sub}.{domain}\"\n    except:\n        return None\n```\n\n## Adding Sources\nCombine passive sources (crt.sh, VirusTotal API) with active brute-forcing for maximum coverage.\n\n## Rate Limiting\nAlways respect rate limits and get authorization before scanning targets you don't own."
+    "content": "Reconnaissance is the foundation of any pentest. Let's build a subdomain enumeration tool in Python.\n\n## Basic Structure\n\nUsing dns.resolver and concurrent.futures, you can create a fast subdomain enumeration script that:\n\n- Reads a wordlist of common subdomains\n- Queries DNS records in parallel\n- Filters for successful resolutions\n- Exports results to a file\n\n## Performance Tips\n\nUse threading to speed up DNS queries. Process multiple domains simultaneously without blocking on I/O operations."
   },
   {
     "slug": "analyze-malware-safely",
@@ -37,7 +37,7 @@
     "readTime": "12 min",
     "tags": ["Malware Analysis", "Reverse Engineering"],
     "category": "Malware Analysis",
-    "content": "Analyzing malware requires an isolated environment. Here's how to build one.\n\n## Setting Up Your Lab\n- Use VirtualBox or VMware with host-only networking\n- Take a clean snapshot before every analysis\n- Never analyze on your host machine\n\n## Static Analysis\nStart with strings, PE headers, and imports. Tools: `strings`, PEStudio, Detect It Easy.\n\n## Dynamic Analysis\nRun the sample and observe behavior with Process Monitor, Wireshark, and Regshot.\n\n## Reverse Engineering\nIDA Pro and Ghidra let you disassemble and understand the binary at a deep level."
+    "content": "Analyzing malware requires an isolated environment. Here's how to build one safely.\n\n## Setting Up Your Lab\n\n- Use VirtualBox or VMware with host-only networking\n- Take a clean snapshot before opening suspicious files\n- Disable internet connectivity to prevent malware propagation\n- Use tools like Wireshark to monitor network traffic\n- Document all observations in a structured format\n\n## Reverse Engineering Basics\n\nIDA Pro is the industry standard for static analysis. Learn to read assembly code and identify malicious patterns."
   },
   {
     "slug": "threat-hunting-basics",
@@ -47,7 +47,7 @@
     "readTime": "9 min",
     "tags": ["Threat Hunting", "SIEM", "Logs"],
     "category": "Threat Hunting",
-    "content": "Threat hunting is proactive — you assume the attacker is already inside and go looking.\n\n## The Hunting Loop\n1. Hypothesis: \"An attacker used PowerShell for lateral movement\"\n2. Query: Search logs for suspicious PowerShell activity\n3. Investigate: Analyze results for true positives\n4. Respond: Contain and remediate findings\n\n## Key Data Sources\n- Windows Event Logs (4624, 4688, 4104)\n- Sysmon\n- Network flow logs\n- EDR telemetry\n\n## Tools\nSplunk, Elastic Security, and open-source options like HELK make hunting accessible."
+    "content": "Threat hunting is proactive — you assume the attacker is already inside and go looking for them.\n\n## The Hunting Loop\n\n1. Hypothesis: An attacker used PowerShell for lateral movement\n2. Search: Query logs for PowerShell execution events\n3. Investigation: Analyze command line arguments and parent processes\n4. Escalation: If suspicious activity found, escalate to incident response\n\n## Tools\n\n- Splunk for centralized log management\n- ELK stack as an open-source alternative\n- Sigma rules for threat detection patterns"
   },
   {
     "slug": "how-to-use-osint-tools",
@@ -57,36 +57,16 @@
     "readTime": "7 min",
     "tags": ["OSINT", "Tools", "Intelligence"],
     "category": "OSINT",
-    "content": "OSINT (Open Source Intelligence) is the art of gathering information from public sources.\n\n## Shodan\nThe search engine for internet-connected devices. Find exposed services:\n- `org:\"Target Corp\"` — devices belonging to an organization\n- `port:3389 country:US` — exposed RDP in the US\n\n## Maltego\nVisual link analysis for pivoting between entities: domains, emails, people, social profiles.\n\n## Other Essentials\n- theHarvester for email/subdomain gathering\n- SpiderFoot for automated OSINT\n- Google Dorking for creative searches\n\n## Ethics\nJust because information is public doesn't make every use ethical. Always operate within legal and moral boundaries."
+    "content": "OSINT (Open Source Intelligence) is the art of gathering information from public sources.\n\n## Shodan\n\nThe search engine for internet-connected devices. Find exposed services:\n- Web servers and their versions\n- IoT devices and industrial control systems\n- VPN servers and proxy services\n- Custom searches for specific vulnerabilities\n\n## Maltego\n\nVisual link analysis tool that maps relationships between data points. Useful for:\n- Domain reconnaissance\n- Person investigation\n- Infrastructure mapping"
   },
   {
-  "slug": "linux-for-beginners-terminal-guide",
-  "title": "Linux for Beginners: Essential Terminal Commands Every Beginner Should Know",
-  "seoTitle": "Linux for Beginners | Learn Basic Linux Terminal Commands",
-  "metaDescription": "Learn the most important Linux terminal commands for beginners. Master navigation, file management, and basic shell usage with this quick tutorial.",
-  "keywords": [
-    "Linux for beginners",
-    "Linux tutorial",
-    "Linux commands",
-    "Linux terminal",
-    "Bash commands",
-    "Ubuntu tutorial",
-    "Linux basics",
-    "Learn Linux",
-    "Linux CLI",
-    "Terminal commands"
-  ],
-  "excerpt": "New to Linux? Learn the essential terminal commands every beginner should know, including file navigation, directory management, and basic shell operations.",
-  "date": "2026-07-10",
-  "readTime": "5 min",
-  "author": "Hasan Babiker",
-  "category": "Linux",
-  "tags": [
-    "Linux",
-    "Terminal",
-    "Bash",
-    "Beginner"
-  ],
-  "content": "# Linux for Beginners\n\nLinux is one of the most widely used operating systems in the world. Whether you're interested in cybersecurity, programming, cloud computing, or system administration, learning Linux is an essential skill.\n\n## Why Learn Linux?\n\nLinux powers millions of servers, cloud platforms, and embedded devices. Understanding Linux gives you greater control over your system and opens the door to advanced technical skills.\n\n## Open the Terminal\n\nMost Linux distributions allow you to open the terminal using **Ctrl + Alt + T**.\n\n## Essential Commands\n\n### Show Current Directory\n\n```bash\npwd\n```\n\nDisplays your current working directory.\n\n### List Files\n\n```bash\nls\n```\n\nShow hidden files:\n\n```bash\nls -la\n```\n\n### Change Directory\n\n```bash\ncd Documents\n```\n\nReturn to the previous directory:\n\n```bash\ncd ..\n```\n\nGo to your home directory:\n\n```bash\ncd ~\n```\n\n### Create Files and Folders\n\n```bash\ntouch notes.txt\nmkdir projects\n```\n\n### Delete Files\n\n```bash\nrm notes.txt\n```\n\n### Display File Contents\n\n```bash\ncat notes.txt\n```\n\n## Practice\n\nCreate a folder, create a file inside it, and use the commands above until you're comfortable navigating the terminal.\n\n## Next Steps\n\nOnce you've mastered these basics, continue learning:\n\n- File permissions (`chmod`, `chown`)\n- Searching with `find` and `grep`\n- Package managers (`apt`, `dnf`, `pacman`)\n- Bash scripting\n- Networking commands (`ping`, `ip`, `ss`)\n\nBuilding strong Linux fundamentals will make learning cybersecurity and programming much easier."
-}
+    "slug": "linux-for-beginners-terminal-guide",
+    "title": "Linux for Beginners: Essential Terminal Commands Every Beginner Should Know",
+    "excerpt": "New to Linux? Learn the essential terminal commands every beginner should know, including file navigation, directory management, and basic shell operations.",
+    "date": "2026-07-10",
+    "readTime": "5 min",
+    "tags": ["Linux", "Terminal", "Bash", "Beginner"],
+    "category": "Linux",
+    "content": "# Linux for Beginners\n\nLinux is one of the most widely used operating systems in the world. Whether you're interested in cybersecurity, programming, cloud computing, or system administration, learning Linux basics is essential.\n\n## Essential Commands\n\n### Navigation\n- pwd: Print working directory\n- cd: Change directory\n- ls: List files and directories\n- mkdir: Create new directory\n\n### File Management\n- cat: Display file contents\n- cp: Copy files\n- mv: Move or rename files\n- rm: Remove files\n- chmod: Change file permissions\n\n## Getting Help\n\nUse 'man' followed by a command name to read its manual page. Every command on Linux has documentation accessible via the terminal."
+  }
 ]
