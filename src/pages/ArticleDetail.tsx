@@ -1,4 +1,5 @@
 import { useParams, Link, Navigate } from "react-router-dom";
+import { useEffect } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -8,6 +9,42 @@ import { getArticleBySlug } from "@/data/articles";
 const ArticleDetail = () => {
   const { slug } = useParams<{ slug: string }>();
   const article = slug ? getArticleBySlug(slug) : undefined;
+
+  useEffect(() => {
+    if (!article) return;
+    const created: HTMLElement[] = [];
+
+    document.title = `${article.title} — Hasan Portfolio`;
+
+    const mk = (attrs: Record<string, string>) => {
+      const el = document.createElement("meta");
+      Object.entries(attrs).forEach(([k, v]) => el.setAttribute(k, v));
+      document.head.appendChild(el);
+      created.push(el);
+    };
+
+    if (article.excerpt) mk({ name: "description", content: article.excerpt });
+    mk({ property: "og:title", content: article.title });
+    if (article.excerpt) mk({ property: "og:description", content: article.excerpt });
+    mk({ property: "og:type", content: "article" });
+    mk({ name: "twitter:card", content: "summary_large_image" });
+
+    const ld = document.createElement("script");
+    ld.type = "application/ld+json";
+    ld.text = JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Article",
+      headline: article.title,
+      description: article.excerpt || "",
+      url: window.location.href,
+      datePublished: article.date || undefined,
+      author: { "@type": "Person", name: "Hasan" },
+    });
+    document.head.appendChild(ld);
+    created.push(ld);
+
+    return () => created.forEach(c => c.remove());
+  }, [article]);
 
   if (!article) return <Navigate to="/articles" replace />;
 
