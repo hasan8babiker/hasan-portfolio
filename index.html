@@ -40,6 +40,16 @@
 
   <body>
     <div id="root"></div>
+    <script>
+  // Restore the real path saved by 404.html, then let React Router take over
+  (function () {
+    var redirect = sessionStorage.redirect;
+    delete sessionStorage.redirect;
+    if (redirect && redirect !== location.href) {
+      history.replaceState(null, null, redirect);
+    }
+  })();
+</script>
     <script type="module" src="./src/main.tsx"></script>
   </body>
 </html>
