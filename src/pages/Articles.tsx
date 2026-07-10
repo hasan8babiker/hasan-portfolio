@@ -5,14 +5,21 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Clock, ArrowRight, BookOpen } from "lucide-react";
 import { articles } from "@/data/articles";
+import { SEO, Breadcrumbs } from "@/components/seo";
 
 
 const Articles = () => {
   return (
     <div className="min-h-screen bg-background">
+      <SEO
+        title="All Articles"
+        description="Cybersecurity articles, tutorials, and technical deep-dives on Linux security, cloud misconfigurations, malware analysis, threat hunting, OSINT, and Python automation."
+        path="/articles"
+      />
       {/* Header */}
       <section className="py-20 px-4">
         <div className="container max-w-6xl mx-auto">
+          <Breadcrumbs items={[{ name: "Articles", path: "/articles" }]} />
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}

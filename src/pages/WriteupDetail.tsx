@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ArrowLeft, Trophy, Calendar, Terminal } from "lucide-react";
 import { getWriteupBySlug } from "@/data/writeups";
+import { ArticleSEO, Breadcrumbs } from "@/components/seo";
 
 const difficultyColor: Record<string, string> = {
   Easy: "bg-green-500/10 text-green-400 border-green-500/30",
@@ -20,8 +21,23 @@ const WriteupDetail = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <ArticleSEO
+        title={w.title}
+        description={w.summary}
+        slug={w.slug}
+        section="/writeups"
+        datePublished={w.date}
+        tags={w.tags}
+        wordCount={w.content.split(/\s+/).length}
+      />
       <article className="container max-w-3xl mx-auto px-4 py-20">
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
+          <Breadcrumbs
+            items={[
+              { name: "Writeups", path: "/writeups" },
+              { name: w.title, path: `/writeups/${w.slug}` },
+            ]}
+          />
           <Button variant="ghost" size="sm" asChild className="mb-8">
             <Link to="/writeups">
               <ArrowLeft className="mr-2 h-4 w-4" />

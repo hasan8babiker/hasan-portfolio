@@ -1,63 +1,42 @@
 import { useParams, Link, Navigate } from "react-router-dom";
-import { useEffect } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Clock, ArrowLeft, Calendar } from "lucide-react";
 import { getArticleBySlug } from "@/data/articles";
+import { ArticleSEO, Breadcrumbs, RelatedArticles } from "@/components/seo";
 
 const ArticleDetail = () => {
   const { slug } = useParams<{ slug: string }>();
   const article = slug ? getArticleBySlug(slug) : undefined;
 
-  useEffect(() => {
-    if (!article) return;
-    const created: HTMLElement[] = [];
-
-    document.title = `${article.title} — Hasan Portfolio`;
-
-    const mk = (attrs: Record<string, string>) => {
-      const el = document.createElement("meta");
-      Object.entries(attrs).forEach(([k, v]) => el.setAttribute(k, v));
-      document.head.appendChild(el);
-      created.push(el);
-    };
-
-    if (article.excerpt) mk({ name: "description", content: article.excerpt });
-    mk({ property: "og:title", content: article.title });
-    if (article.excerpt) mk({ property: "og:description", content: article.excerpt });
-    mk({ property: "og:type", content: "article" });
-    mk({ name: "twitter:card", content: "summary_large_image" });
-
-    const ld = document.createElement("script");
-    ld.type = "application/ld+json";
-    ld.text = JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "Article",
-      headline: article.title,
-      description: article.excerpt || "",
-      url: window.location.href,
-      datePublished: article.date || undefined,
-      author: { "@type": "Person", name: "Hasan" },
-    });
-    document.head.appendChild(ld);
-    created.push(ld);
-
-    return () => created.forEach(c => c.remove());
-  }, [article]);
-
   if (!article) return <Navigate to="/articles" replace />;
+
+  const wordCount = article.content.split(/\s+/).length;
 
   return (
     <div className="min-h-screen bg-background">
+      <ArticleSEO
+        title={article.title}
+        description={article.excerpt}
+        slug={article.slug}
+        section="/articles"
+        datePublished={article.date}
+        tags={article.tags}
+        wordCount={wordCount}
+      />
+
       <article className="container max-w-3xl mx-auto px-4 py-20">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-        >
+        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
+          <Breadcrumbs
+            items={[
+              { name: "Articles", path: "/articles" },
+              { name: article.title, path: `/articles/${article.slug}` },
+            ]}
+          />
+
           <Button variant="ghost" size="sm" asChild className="mb-8">
-            <Link to="/articles">
+            <Link to="/articles" aria-label="Back to all articles">
               <ArrowLeft className="mr-2 h-4 w-4" />
               Back to Articles
             </Link>
@@ -65,23 +44,21 @@ const ArticleDetail = () => {
 
           <Badge variant="outline" className="mb-4">{article.category}</Badge>
 
-          <h1 className="text-3xl md:text-5xl font-bold mb-6 leading-tight">
-            {article.title}
-          </h1>
+          <h1 className="text-3xl md:text-5xl font-bold mb-6 leading-tight">{article.title}</h1>
 
           <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground mb-8">
             <div className="flex items-center gap-1">
-              <Calendar className="h-4 w-4" />
-              <span>{article.date}</span>
+              <Calendar className="h-4 w-4" aria-hidden="true" />
+              <time dateTime={article.date}>{article.date}</time>
             </div>
             <div className="flex items-center gap-1">
-              <Clock className="h-4 w-4" />
+              <Clock className="h-4 w-4" aria-hidden="true" />
               <span>{article.readTime} read</span>
             </div>
           </div>
 
           <div className="flex flex-wrap gap-2 mb-10">
-            {article.tags.map(tag => (
+            {article.tags.map((tag) => (
               <Badge key={tag} variant="secondary" className="bg-primary/10 text-primary border-primary/20">
                 {tag}
               </Badge>
@@ -129,6 +106,12 @@ const ArticleDetail = () => {
               );
             })}
           </div>
+
+          <RelatedArticles
+            currentSlug={article.slug}
+            currentTags={article.tags}
+            currentCategory={article.category}
+          />
         </motion.div>
       </article>
     </div>

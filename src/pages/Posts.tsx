@@ -4,12 +4,18 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { BookOpen, ArrowRight } from "lucide-react";
 import { getPosts } from "@/lib/mdx";
+import { SEO, Breadcrumbs } from "@/components/seo";
 
 const Posts = () => {
   const posts = getPosts();
 
   return (
     <div className="min-h-screen bg-background">
+      <SEO
+        title="MDX Blog Posts"
+        description="Long-form posts authored in MDX covering cybersecurity, development, and engineering topics."
+        path="/posts"
+      />
       <section className="py-20 px-4">
         <div className="container max-w-6xl mx-auto text-center">
           <div className="flex items-center justify-center gap-3 mb-4">

@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Terminal, ArrowRight, Trophy } from "lucide-react";
 import { writeups } from "@/data/writeups";
+import { SEO, Breadcrumbs } from "@/components/seo";
 
 const difficultyColor: Record<string, string> = {
   Easy: "bg-green-500/10 text-green-400 border-green-500/30",
@@ -16,8 +17,14 @@ const difficultyColor: Record<string, string> = {
 const WriteupsPage = () => {
   return (
     <div className="min-h-screen bg-background">
+      <SEO
+        title="CTF Writeups & Lab Solutions"
+        description="Detailed writeups of HackTheBox, TryHackMe, and PicoCTF machines — enumeration, exploitation, and privilege escalation walkthroughs."
+        path="/writeups"
+      />
       <section className="py-20 px-4">
         <div className="container max-w-6xl mx-auto">
+          <Breadcrumbs items={[{ name: "Writeups", path: "/writeups" }]} />
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}

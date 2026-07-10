@@ -2,27 +2,33 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://hasan8babiker.github.io/hasan-portfolio/</loc>
-    <lastmod>2026-07-09</lastmod>
+    <lastmod>2026-07-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://hasan8babiker.github.io/hasan-portfolio/articles</loc>
-    <lastmod>2026-07-09</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://hasan8babiker.github.io/hasan-portfolio/posts</loc>
-    <lastmod>2026-07-09</lastmod>
+    <lastmod>2026-07-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hasan8babiker.github.io/hasan-portfolio/writeups</loc>
-    <lastmod>2026-07-09</lastmod>
+    <lastmod>2026-07-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://hasan8babiker.github.io/hasan-portfolio/posts</loc>
+    <lastmod>2026-07-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://hasan8babiker.github.io/hasan-portfolio/articles/htb-codify-writeup</loc>
+    <lastmod>2026-07-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://hasan8babiker.github.io/hasan-portfolio/articles/secure-your-linux-system</loc>
@@ -57,6 +63,24 @@
   <url>
     <loc>https://hasan8babiker.github.io/hasan-portfolio/articles/how-to-use-osint-tools</loc>
     <lastmod>2025-10-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://hasan8babiker.github.io/hasan-portfolio/writeups/tryhackme-basic-pentesting</loc>
+    <lastmod>Nov 28, 2025</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://hasan8babiker.github.io/hasan-portfolio/writeups/hackthebox-lame</loc>
+    <lastmod>Nov 20, 2025</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://hasan8babiker.github.io/hasan-portfolio/writeups/picoctf-web-gauntlet</loc>
+    <lastmod>Nov 12, 2025</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
