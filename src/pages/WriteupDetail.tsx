@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ArrowLeft, Trophy, Calendar, Terminal } from "lucide-react";
 import { getWriteupBySlug } from "@/data/writeups";
+import { ArticleSEO, Breadcrumbs } from "@/components/seo";
 
 const difficultyColor: Record<string, string> = {
   Easy: "bg-green-500/10 text-green-400 border-green-500/30",
