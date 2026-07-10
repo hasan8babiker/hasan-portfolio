@@ -2,74 +2,92 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://hasan8babiker.github.io/hasan-portfolio/</loc>
-    <lastmod>undefined</lastmod>
+    <lastmod>2026-07-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://hasan8babiker.github.io/hasan-portfolio/articles</loc>
-    <lastmod>undefined</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://hasan8babiker.github.io/hasan-portfolio/posts</loc>
-    <lastmod>undefined</lastmod>
+    <lastmod>2026-07-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hasan8babiker.github.io/hasan-portfolio/writeups</loc>
-    <lastmod>undefined</lastmod>
+    <lastmod>2026-07-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://hasan8babiker.github.io/hasan-portfolio/posts</loc>
+    <lastmod>2026-07-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hasan8babiker.github.io/hasan-portfolio/articles/htb-codify-writeup</loc>
     <lastmod>2026-07-09</lastmod>
-    <changefreq>weekly</changefreq>
+    <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://hasan8babiker.github.io/hasan-portfolio/articles/secure-your-linux-system</loc>
     <lastmod>2025-11-25</lastmod>
-    <changefreq>weekly</changefreq>
+    <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://hasan8babiker.github.io/hasan-portfolio/articles/hackers-abuse-misconfigurations</loc>
     <lastmod>2025-11-20</lastmod>
-    <changefreq>weekly</changefreq>
+    <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://hasan8babiker.github.io/hasan-portfolio/articles/python-scripts-automating-recon</loc>
     <lastmod>2025-11-15</lastmod>
-    <changefreq>weekly</changefreq>
+    <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://hasan8babiker.github.io/hasan-portfolio/articles/analyze-malware-safely</loc>
     <lastmod>2025-11-10</lastmod>
-    <changefreq>weekly</changefreq>
+    <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://hasan8babiker.github.io/hasan-portfolio/articles/threat-hunting-basics</loc>
     <lastmod>2025-11-05</lastmod>
-    <changefreq>weekly</changefreq>
+    <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://hasan8babiker.github.io/hasan-portfolio/articles/how-to-use-osint-tools</loc>
     <lastmod>2025-10-30</lastmod>
-    <changefreq>weekly</changefreq>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://hasan8babiker.github.io/hasan-portfolio/writeups/tryhackme-basic-pentesting</loc>
+    <lastmod>Nov 28, 2025</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://hasan8babiker.github.io/hasan-portfolio/writeups/hackthebox-lame</loc>
+    <lastmod>Nov 20, 2025</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://hasan8babiker.github.io/hasan-portfolio/writeups/picoctf-web-gauntlet</loc>
+    <lastmod>Nov 12, 2025</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://hasan8babiker.github.io/hasan-portfolio/posts/hello-world</loc>
     <lastmod>2026-07-09</lastmod>
-    <changefreq>weekly</changefreq>
+    <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 </urlset>
