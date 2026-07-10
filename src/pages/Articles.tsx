@@ -19,6 +19,7 @@ const Articles = () => {
       {/* Header */}
       <section className="py-20 px-4">
         <div className="container max-w-6xl mx-auto">
+          <Breadcrumbs items={[{ name: "Articles", path: "/articles" }]} />
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
