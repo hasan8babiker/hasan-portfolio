@@ -5,11 +5,8 @@ const root = path.resolve(".");
 const publicDir = path.join(root, "public");
 const siteUrl = "https://hasan8babiker.github.io/hasan-portfolio";
 
-const articlesJsonPath = path.join(root, "src", "data", "articles.json");
-const mdxPostsDir = path.join(root, "src", "content", "articles");
-
-const escapeXml = (value) =>
-  String(value)
+const escapeXml = (v) =>
+  String(v)
     .replace(/&/g, "&amp;")
     .replace(/</g, "&lt;")
     .replace(/>/g, "&gt;")
@@ -19,128 +16,102 @@ const escapeXml = (value) =>
 const parseFrontmatter = (source) => {
   const match = source.match(/^---\s*([\s\S]*?)\s*---/);
   if (!match) return {};
-  const yaml = match[1];
   const data = {};
-  yaml.split(/\r?\n/).forEach((line) => {
+  match[1].split(/\r?\n/).forEach((line) => {
     const idx = line.indexOf(":");
     if (idx === -1) return;
     const key = line.slice(0, idx).trim();
     let value = line.slice(idx + 1).trim();
-    if (/^['"].*['"]$/.test(value)) {
-      value = value.slice(1, -1);
-    }
+    if (/^['"].*['"]$/.test(value)) value = value.slice(1, -1);
     data[key] = value;
   });
   return data;
 };
 
-const readArticles = () => {
-  const raw = fs.readFileSync(articlesJsonPath, "utf8");
-  return JSON.parse(raw);
-};
+// Sources
+const articles = JSON.parse(fs.readFileSync(path.join(root, "src/data/articles.json"), "utf8"));
 
-const readPosts = () => {
-  if (!fs.existsSync(mdxPostsDir)) return [];
-  return fs.readdirSync(mdxPostsDir)
-    .filter((file) => file.endsWith(".mdx"))
-    .map((filename) => {
-      const filePath = path.join(mdxPostsDir, filename);
-      const source = fs.readFileSync(filePath, "utf8");
-      const data = parseFrontmatter(source);
-      return {
-        slug: filename.replace(/\.mdx$/, ""),
-        title: data.title || filename.replace(/\.mdx$/, ""),
-        date: data.date || null,
-        excerpt: data.excerpt || "",
-      };
-    });
-};
+// Parse writeups.ts (simple regex — matches the plain-object array we author)
+const writeupsSrc = fs.readFileSync(path.join(root, "src/data/writeups.ts"), "utf8");
+const writeups = [...writeupsSrc.matchAll(/slug:\s*"([^"]+)"[\s\S]*?title:\s*"([^"]+)"[\s\S]*?date:\s*"([^"]+)"[\s\S]*?summary:\s*"([^"]+)"/g)]
+  .map((m) => ({ slug: m[1], title: m[2], date: m[3], excerpt: m[4] }));
 
-const articles = readArticles();
-const posts = readPosts();
+// MDX posts
+const mdxDir = path.join(root, "src/content/articles");
+const posts = fs.existsSync(mdxDir)
+  ? fs.readdirSync(mdxDir).filter((f) => f.endsWith(".mdx")).map((filename) => {
+      const src = fs.readFileSync(path.join(mdxDir, filename), "utf8");
+      const fm = parseFrontmatter(src);
+      return { slug: filename.replace(/\.mdx$/, ""), title: fm.title || filename, date: fm.date || null, excerpt: fm.excerpt || "" };
+    })
+  : [];
 
-const now = new Date();
-const today = now.toISOString().split("T")[0];
+const today = new Date().toISOString().slice(0, 10);
 
 const staticPages = [
-  { path: "/", priority: "1.0" },
-  { path: "/articles", priority: "0.8" },
-  { path: "/posts", priority: "0.8" },
-  { path: "/writeups", priority: "0.8" },
+  { path: "/", priority: "1.0", changefreq: "weekly" },
+  { path: "/articles", priority: "0.8", changefreq: "weekly" },
+  { path: "/writeups", priority: "0.8", changefreq: "weekly" },
+  { path: "/posts", priority: "0.8", changefreq: "weekly" },
 ];
 
-const allItems = [
-  ...articles.map((article) => ({
-    path: "/articles/" + article.slug,
-    title: article.title,
-    date: article.date,
-    excerpt: article.excerpt,
-    type: "article",
-  })),
-  ...posts.map((post) => ({
-    path: "/posts/" + post.slug,
-    title: post.title,
-    date: post.date,
-    excerpt: post.excerpt,
-    type: "post",
-  })),
+const contentItems = [
+  ...articles.map((a) => ({ path: `/articles/${a.slug}`, title: a.title, date: a.date, excerpt: a.excerpt, type: "article" })),
+  ...writeups.map((w) => ({ path: `/writeups/${w.slug}`, title: w.title, date: w.date, excerpt: w.excerpt, type: "writeup" })),
+  ...posts.map((p) => ({ path: `/posts/${p.slug}`, title: p.title, date: p.date, excerpt: p.excerpt, type: "post" })),
 ];
 
-const sortedItems = allItems
-  .slice()
-  .sort((a, b) => new Date(b.date || today).valueOf() - new Date(a.date || today).valueOf());
-
-const sitemapUrls = [
-  ...staticPages,
-  ...allItems.map((item) => ({
-    path: item.path,
-    lastmod: item.date || today,
-    priority: item.type === "article" ? "0.7" : "0.7",
-  })),
+// ---------- sitemap.xml ----------
+const sitemapEntries = [
+  ...staticPages.map((p) => ({ ...p, lastmod: today })),
+  ...contentItems.map((it) => ({ path: it.path, lastmod: it.date || today, changefreq: "monthly", priority: "0.7" })),
 ];
 
 const sitemapXml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${sitemapUrls
+${sitemapEntries
   .map(
-    (entry) => `  <url>
-    <loc>${siteUrl}${entry.path}</loc>
-    <lastmod>${entry.lastmod}</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>${entry.priority}</priority>
+    (e) => `  <url>
+    <loc>${siteUrl}${e.path}</loc>
+    <lastmod>${e.lastmod}</lastmod>
+    <changefreq>${e.changefreq}</changefreq>
+    <priority>${e.priority}</priority>
   </url>`
   )
   .join("\n")}
 </urlset>
 `;
 
-const rssItemsXml = sortedItems
-  .map((item) => `  <item>
-    <title>${escapeXml(item.title)}</title>
-    <link>${siteUrl}${item.path}</link>
-    <guid isPermaLink="true">${siteUrl}${item.path}</guid>
-    <pubDate>${new Date(item.date || today).toUTCString()}</pubDate>
-    <description>${escapeXml(item.excerpt || item.title)}</description>
-  </item>`)
+// ---------- rss.xml ----------
+const rssItems = [...contentItems]
+  .sort((a, b) => new Date(b.date || today) - new Date(a.date || today))
+  .map(
+    (it) => `  <item>
+    <title>${escapeXml(it.title)}</title>
+    <link>${siteUrl}${it.path}</link>
+    <guid isPermaLink="true">${siteUrl}${it.path}</guid>
+    <pubDate>${new Date(it.date || today).toUTCString()}</pubDate>
+    <category>${it.type}</category>
+    <description>${escapeXml(it.excerpt || it.title)}</description>
+  </item>`
+  )
   .join("\n");
 
 const rssXml = `<?xml version="1.0" encoding="UTF-8" ?>
-<rss version="2.0">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Hasan Portfolio Articles & Writeups</title>
+    <title>Hasan Babiker — Articles &amp; Writeups</title>
     <link>${siteUrl}</link>
-    <description>Latest articles and writeups from Hasan' portfolio.</description>
+    <atom:link href="${siteUrl}/rss.xml" rel="self" type="application/rss+xml" />
+    <description>Cybersecurity articles, CTF writeups, and Python security tools by Hasan Babiker.</description>
     <language>en-US</language>
-    <lastBuildDate>${now.toUTCString()}</lastBuildDate>
-${rssItemsXml}
+    <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>
+${rssItems}
   </channel>
 </rss>
 `;
 
-if (!fs.existsSync(publicDir)) {
-  fs.mkdirSync(publicDir, { recursive: true });
-}
-
-fs.writeFileSync(path.join(publicDir, "sitemap.xml"), sitemapXml, "utf8");
-fs.writeFileSync(path.join(publicDir, "rss.xml"), rssXml, "utf8");
-console.log(`Generated sitemap.xml and rss.xml in ${publicDir}`);
+fs.mkdirSync(publicDir, { recursive: true });
+fs.writeFileSync(path.join(publicDir, "sitemap.xml"), sitemapXml);
+fs.writeFileSync(path.join(publicDir, "rss.xml"), rssXml);
+console.log(`✓ sitemap.xml (${sitemapEntries.length} urls) + rss.xml (${contentItems.length} items) written to ${publicDir}`);

@@ -2,58 +2,65 @@
 <rss version="2.0">
   <channel>
     <title>Hasan Portfolio Articles & Writeups</title>
-    <link>https://hasan8babiker.github.io/hasan-portfolio/</link>
+    <link>https://hasan8babiker.github.io/hasan-portfolio</link>
     <description>Latest articles and writeups from Hasan' portfolio.</description>
     <language>en-US</language>
-    <lastBuildDate>Wed, 09 Jul 2026 00:00:00 GMT</lastBuildDate>
-    <item>
-      <title>Hello World — MDX Post</title>
-      <link>https://hasan8babiker.github.io/hasan-portfolio/posts/hello-world</link>
-      <guid isPermaLink="true">https://hasan8babiker.github.io/hasan-portfolio/posts/hello-world</guid>
-      <pubDate>Thu, 09 Jul 2026 00:00:00 GMT</pubDate>
-      <description>This is a sample MDX post to demonstrate MDX support.</description>
-    </item>
-    <item>
-      <title>How to Secure Your Linux System: A Beginner's Guide</title>
-      <link>https://hasan8babiker.github.io/hasan-portfolio/articles/secure-your-linux-system</link>
-      <guid isPermaLink="true">https://hasan8babiker.github.io/hasan-portfolio/articles/secure-your-linux-system</guid>
-      <pubDate>Tue, 25 Nov 2025 00:00:00 GMT</pubDate>
-      <description>Linux is powerful but often targeted. This guide covers essentials for hardening your setup including firewall configuration, SSH security, and user management.</description>
-    </item>
-    <item>
-      <title>How Hackers Abuse Misconfigurations</title>
-      <link>https://hasan8babiker.github.io/hasan-portfolio/articles/hackers-abuse-misconfigurations</link>
-      <guid isPermaLink="true">https://hasan8babiker.github.io/hasan-portfolio/articles/hackers-abuse-misconfigurations</guid>
-      <pubDate>Thu, 20 Nov 2025 00:00:00 GMT</pubDate>
-      <description>Discuss common AWS S3 bucket exposures and prevention strategies. Learn how misconfigurations lead to data breaches and how to prevent them.</description>
-    </item>
-    <item>
-      <title>Python Scripts for Automating Recon</title>
-      <link>https://hasan8babiker.github.io/hasan-portfolio/articles/python-scripts-automating-recon</link>
-      <guid isPermaLink="true">https://hasan8babiker.github.io/hasan-portfolio/articles/python-scripts-automating-recon</guid>
-      <pubDate>Sat, 15 Nov 2025 00:00:00 GMT</pubDate>
-      <description>Code walkthrough for subdomain enumeration. Build your own reconnaissance tools using Python and automate your security workflows.</description>
-    </item>
-    <item>
-      <title>How to Analyze Malware Safely</title>
-      <link>https://hasan8babiker.github.io/hasan-portfolio/articles/analyze-malware-safely</link>
-      <guid isPermaLink="true">https://hasan8babiker.github.io/hasan-portfolio/articles/analyze-malware-safely</guid>
-      <pubDate>Mon, 10 Nov 2025 00:00:00 GMT</pubDate>
-      <description>Using virtual machines and tools like IDA Pro for safe malware analysis. Learn the fundamentals of reverse engineering and threat analysis.</description>
-    </item>
-    <item>
-      <title>Threat Hunting Basics</title>
-      <link>https://hasan8babiker.github.io/hasan-portfolio/articles/threat-hunting-basics</link>
-      <guid isPermaLink="true">https://hasan8babiker.github.io/hasan-portfolio/articles/threat-hunting-basics</guid>
-      <pubDate>Wed, 05 Nov 2025 00:00:00 GMT</pubDate>
-      <description>Log analysis with Splunk and ELK stack. Master the art of proactive threat hunting and learn to identify indicators of compromise.</description>
-    </item>
-    <item>
-      <title>How to Use OSINT Tools</title>
-      <link>https://hasan8babiker.github.io/hasan-portfolio/articles/how-to-use-osint-tools</link>
-      <guid isPermaLink="true">https://hasan8babiker.github.io/hasan-portfolio/articles/how-to-use-osint-tools</guid>
-      <pubDate>Thu, 30 Oct 2025 00:00:00 GMT</pubDate>
-      <description>Comprehensive guide to Maltego and Shodan for intelligence gathering. Discover how to leverage open-source intelligence for security research.</description>
-    </item>
+    <lastBuildDate>Fri, 10 Jul 2026 08:38:49 GMT</lastBuildDate>
+  <item>
+    <title>HackTheBox Codify Writeup: Code Review to RCE</title>
+    <link>https://hasan8babiker.github.io/hasan-portfolio/articles/htb-codify-writeup</link>
+    <guid isPermaLink="true">https://hasan8babiker.github.io/hasan-portfolio/articles/htb-codify-writeup</guid>
+    <pubDate>Thu, 09 Jul 2026 00:00:00 GMT</pubDate>
+    <description>Detailed walkthrough of the Codify machine on HackTheBox. Learn how to exploit a vulnerable code review feature leading to remote code execution.</description>
+  </item>
+  <item>
+    <title>Hello World — MDX Post</title>
+    <link>https://hasan8babiker.github.io/hasan-portfolio/posts/hello-world</link>
+    <guid isPermaLink="true">https://hasan8babiker.github.io/hasan-portfolio/posts/hello-world</guid>
+    <pubDate>Thu, 09 Jul 2026 00:00:00 GMT</pubDate>
+    <description>This is a sample MDX post to demonstrate MDX support.</description>
+  </item>
+  <item>
+    <title>How to Secure Your Linux System: A Beginner&apos;s Guide</title>
+    <link>https://hasan8babiker.github.io/hasan-portfolio/articles/secure-your-linux-system</link>
+    <guid isPermaLink="true">https://hasan8babiker.github.io/hasan-portfolio/articles/secure-your-linux-system</guid>
+    <pubDate>Tue, 25 Nov 2025 00:00:00 GMT</pubDate>
+    <description>Linux is powerful but often targeted. This guide covers essentials for hardening your setup including firewall configuration, SSH security, and user management.</description>
+  </item>
+  <item>
+    <title>How Hackers Abuse Misconfigurations</title>
+    <link>https://hasan8babiker.github.io/hasan-portfolio/articles/hackers-abuse-misconfigurations</link>
+    <guid isPermaLink="true">https://hasan8babiker.github.io/hasan-portfolio/articles/hackers-abuse-misconfigurations</guid>
+    <pubDate>Thu, 20 Nov 2025 00:00:00 GMT</pubDate>
+    <description>Discuss common AWS S3 bucket exposures and prevention strategies. Learn how misconfigurations lead to data breaches and how to prevent them.</description>
+  </item>
+  <item>
+    <title>Python Scripts for Automating Recon</title>
+    <link>https://hasan8babiker.github.io/hasan-portfolio/articles/python-scripts-automating-recon</link>
+    <guid isPermaLink="true">https://hasan8babiker.github.io/hasan-portfolio/articles/python-scripts-automating-recon</guid>
+    <pubDate>Sat, 15 Nov 2025 00:00:00 GMT</pubDate>
+    <description>Code walkthrough for subdomain enumeration. Build your own reconnaissance tools using Python and automate your security workflows.</description>
+  </item>
+  <item>
+    <title>How to Analyze Malware Safely</title>
+    <link>https://hasan8babiker.github.io/hasan-portfolio/articles/analyze-malware-safely</link>
+    <guid isPermaLink="true">https://hasan8babiker.github.io/hasan-portfolio/articles/analyze-malware-safely</guid>
+    <pubDate>Mon, 10 Nov 2025 00:00:00 GMT</pubDate>
+    <description>Using virtual machines and tools like IDA Pro for safe malware analysis. Learn the fundamentals of reverse engineering and threat analysis.</description>
+  </item>
+  <item>
+    <title>Threat Hunting Basics</title>
+    <link>https://hasan8babiker.github.io/hasan-portfolio/articles/threat-hunting-basics</link>
+    <guid isPermaLink="true">https://hasan8babiker.github.io/hasan-portfolio/articles/threat-hunting-basics</guid>
+    <pubDate>Wed, 05 Nov 2025 00:00:00 GMT</pubDate>
+    <description>Log analysis with Splunk and ELK stack. Master the art of proactive threat hunting and learn to identify indicators of compromise.</description>
+  </item>
+  <item>
+    <title>How to Use OSINT Tools</title>
+    <link>https://hasan8babiker.github.io/hasan-portfolio/articles/how-to-use-osint-tools</link>
+    <guid isPermaLink="true">https://hasan8babiker.github.io/hasan-portfolio/articles/how-to-use-osint-tools</guid>
+    <pubDate>Thu, 30 Oct 2025 00:00:00 GMT</pubDate>
+    <description>Comprehensive guide to Maltego and Shodan for intelligence gathering. Discover how to leverage open-source intelligence for security research.</description>
+  </item>
   </channel>
 </rss>
