@@ -20,16 +20,6 @@
     "content": "Linux powers most of the internet's infrastructure, which also makes it a prime target for attackers. This guide walks through the essentials of hardening a fresh Linux install.\n\n## 1. Keep Your System Updated\nRun `sudo apt update && sudo apt upgrade` regularly to patch known vulnerabilities. Consider enabling unattended-upgrades for critical security patches.\n\n## 2. Configure the Firewall\nUFW (Uncomplicated Firewall) is your first line of defense:\n- `sudo ufw default deny incoming`\n- `sudo ufw default allow outgoing`\n- `sudo ufw allow ssh`\n- `sudo ufw enable`\n\n## 3. Harden SSH\n- Disable root login: `PermitRootLogin no`\n- Use key-based authentication only: `PasswordAuthentication no`\n- Change the default port from 22\n- Install Fail2Ban to block brute-force attempts\n\n## 4. User Management\nCreate a non-root user with sudo privileges and disable direct root access. Audit `/etc/passwd` for unexpected accounts.\n\n## 5. Monitoring\nSet up log monitoring with tools like Logwatch or the ELK stack. Watch `/var/log/auth.log` for suspicious activity.\n\nSecurity is iterative — review your configuration monthly and stay informed about new CVEs."
   },
   {
-    "slug": "hackers-abuse-misconfigurations",
-    "title": "How Hackers Abuse Misconfigurations",
-    "excerpt": "Discuss common AWS S3 bucket exposures and prevention strategies. Learn how misconfigurations lead to data breaches and how to prevent them.",
-    "date": "2025-11-20",
-    "readTime": "6 min",
-    "tags": ["Cloud Security", "AWS", "Best Practices"],
-    "category": "Cloud Security",
-    "content": "Misconfigurations are the #1 cause of cloud data breaches. Here's how attackers find and exploit them.\n\n## Public S3 Buckets\nTools like `s3scanner` and Grayhat Warfare index publicly exposed buckets. A single misconfigured bucket can leak millions of records.\n\n## Prevention Checklist\n- Enable S3 Block Public Access at the account level\n- Use bucket policies with explicit deny rules\n- Enable CloudTrail logging for all bucket access\n- Rotate access keys regularly\n- Use IAM roles instead of long-lived credentials\n\n## Beyond S3\nSimilar misconfigurations plague Azure Blob Storage, GCP Cloud Storage, and even self-hosted MinIO. The principle is the same: default to private, grant access explicitly."
-  },
-  {
     "slug": "python-scripts-automating-recon",
     "title": "Python Scripts for Automating Recon",
     "excerpt": "Code walkthrough for subdomain enumeration. Build your own reconnaissance tools using Python and automate your security workflows.",
@@ -69,7 +59,7 @@
     "category": "OSINT",
     "content": "OSINT (Open Source Intelligence) is the art of gathering information from public sources.\n\n## Shodan\nThe search engine for internet-connected devices. Find exposed services:\n- `org:\"Target Corp\"` — devices belonging to an organization\n- `port:3389 country:US` — exposed RDP in the US\n\n## Maltego\nVisual link analysis for pivoting between entities: domains, emails, people, social profiles.\n\n## Other Essentials\n- theHarvester for email/subdomain gathering\n- SpiderFoot for automated OSINT\n- Google Dorking for creative searches\n\n## Ethics\nJust because information is public doesn't make every use ethical. Always operate within legal and moral boundaries."
   },
-   {
+  {
   "slug": "linux-for-beginners-terminal-guide",
   "title": "Linux for Beginners: Essential Terminal Commands Every Beginner Should Know",
   "seoTitle": "Linux for Beginners | Learn Basic Linux Terminal Commands",
