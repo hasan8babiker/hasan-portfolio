@@ -1,6 +1,5 @@
 import fs from "fs";
 import path from "path";
-import matter from "gray-matter";
 
 const root = path.resolve(".");
 const publicDir = path.join(root, "public");
@@ -17,6 +16,24 @@ const escapeXml = (value) =>
     .replace(/"/g, "&quot;")
     .replace(/'/g, "&apos;");
 
+const parseFrontmatter = (source) => {
+  const match = source.match(/^---\s*([\s\S]*?)\s*---/);
+  if (!match) return {};
+  const yaml = match[1];
+  const data = {};
+  yaml.split(/\r?\n/).forEach((line) => {
+    const idx = line.indexOf(":");
+    if (idx === -1) return;
+    const key = line.slice(0, idx).trim();
+    let value = line.slice(idx + 1).trim();
+    if (/^['"].*['"]$/.test(value)) {
+      value = value.slice(1, -1);
+    }
+    data[key] = value;
+  });
+  return data;
+};
+
 const readArticles = () => {
   const raw = fs.readFileSync(articlesJsonPath, "utf8");
   return JSON.parse(raw);
@@ -29,7 +46,7 @@ const readPosts = () => {
     .map((filename) => {
       const filePath = path.join(mdxPostsDir, filename);
       const source = fs.readFileSync(filePath, "utf8");
-      const { data } = matter(source);
+      const data = parseFrontmatter(source);
       return {
         slug: filename.replace(/\.mdx$/, ""),
         title: data.title || filename.replace(/\.mdx$/, ""),

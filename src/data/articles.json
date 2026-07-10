@@ -1,9 +1,76 @@
 [
   {
+    "slug": "htb-codify-writeup",
+    "title": "HackTheBox Codify Writeup: Code Review to RCE",
+    "excerpt": "Detailed walkthrough of the Codify machine on HackTheBox. Learn how to exploit a vulnerable code review feature leading to remote code execution.",
+    "date": "2026-07-09",
+    "readTime": "15 min",
+    "tags": ["CTF", "HackTheBox", "RCE", "Writeup"],
+    "category": "CTF Writeup",
+    "content": "Codify is a medium-difficulty HackTheBox machine that teaches code review vulnerabilities and privilege escalation.\n\n## Enumeration\nFirst, scan for open ports:\n```bash\nnmap -sV -sC 10.10.11.222\n```\nWe find SSH (port 22) and HTTP (port 3000) running a Node.js application.\n\n## Initial Access\nVisiting the web app reveals a code sandbox that executes JavaScript. Testing basic RCE payloads, we notice the app uses `vm2` library which is known to have escape vulnerabilities.\n\n## Exploitation\nThe `vm2` library has a sandbox escape. We can use:\n```javascript\nconst {VM} = require('vm2');\nconst vm = new VM();\nvm.run('this.constructor.constructor(\"return this.process.mainModule.require(\\'child_process\\').execSync(\\'id\\')\")();\n```\nBut since we're in their sandbox, we craft the payload to break out and execute commands.\n\n## Foothold\nAfter RCE, we find database credentials in `.env` file. Using these, we enumerate further and find a user account.\n\n## Privilege Escalation\nThe user has sudo rights for a specific script. By analyzing the script, we can exploit a race condition to elevate to root.\n\n## Lessons Learned\n- Always update dependencies (vm2 is deprecated)\n- Input validation is critical even in sandboxes\n- Check for race conditions in privileged scripts\n- Credential management matters"
+  },
+  {
     "slug": "secure-your-linux-system",
     "title": "How to Secure Your Linux System: A Beginner's Guide",
     "excerpt": "Linux is powerful but often targeted. This guide covers essentials for hardening your setup including firewall configuration, SSH security, and user management.",
     "date": "2025-11-25",
+    "readTime": "8 min",
+    "tags": ["Linux", "Security", "Tutorial"],
+    "category": "System Security",
+    "content": "Linux powers most of the internet's infrastructure, which also makes it a prime target for attackers. This guide walks through the essentials of hardening a fresh Linux install.\n\n## 1. Keep Your System Updated\nRun `sudo apt update && sudo apt upgrade` regularly to patch known vulnerabilities. Consider enabling unattended-upgrades for critical security patches.\n\n## 2. Configure the Firewall\nUFW (Uncomplicated Firewall) is your first line of defense:\n- `sudo ufw default deny incoming`\n- `sudo ufw default allow outgoing`\n- `sudo ufw allow ssh`\n- `sudo ufw enable`\n\n## 3. Harden SSH\n- Disable root login: `PermitRootLogin no`\n- Use key-based authentication only: `PasswordAuthentication no`\n- Change the default port from 22\n- Install Fail2Ban to block brute-force attempts\n\n## 4. User Management\nCreate a non-root user with sudo privileges and disable direct root access. Audit `/etc/passwd` for unexpected accounts.\n\n## 5. Monitoring\nSet up log monitoring with tools like Logwatch or the ELK stack. Watch `/var/log/auth.log` for suspicious activity.\n\nSecurity is iterative — review your configuration monthly and stay informed about new CVEs."
+  },
+  {
+    "slug": "hackers-abuse-misconfigurations",
+    "title": "How Hackers Abuse Misconfigurations",
+    "excerpt": "Discuss common AWS S3 bucket exposures and prevention strategies. Learn how misconfigurations lead to data breaches and how to prevent them.",
+    "date": "2025-11-20",
+    "readTime": "6 min",
+    "tags": ["Cloud Security", "AWS", "Best Practices"],
+    "category": "Cloud Security",
+    "content": "Misconfigurations are the #1 cause of cloud data breaches. Here's how attackers find and exploit them.\n\n## Public S3 Buckets\nTools like `s3scanner` and Grayhat Warfare index publicly exposed buckets. A single misconfigured bucket can leak millions of records.\n\n## Prevention Checklist\n- Enable S3 Block Public Access at the account level\n- Use bucket policies with explicit deny rules\n- Enable CloudTrail logging for all bucket access\n- Rotate access keys regularly\n- Use IAM roles instead of long-lived credentials\n\n## Beyond S3\nSimilar misconfigurations plague Azure Blob Storage, GCP Cloud Storage, and even self-hosted MinIO. The principle is the same: default to private, grant access explicitly."
+  },
+  {
+    "slug": "python-scripts-automating-recon",
+    "title": "Python Scripts for Automating Recon",
+    "excerpt": "Code walkthrough for subdomain enumeration. Build your own reconnaissance tools using Python and automate your security workflows.",
+    "date": "2025-11-15",
+    "readTime": "10 min",
+    "tags": ["Python", "Automation", "Recon"],
+    "category": "Development",
+    "content": "Reconnaissance is the foundation of any pentest. Let's build a subdomain enumeration tool in Python.\n\n## Basic Structure\nUsing `dns.resolver` and `concurrent.futures`, you can check thousands of subdomains per minute:\n\n```python\nimport dns.resolver\nfrom concurrent.futures import ThreadPoolExecutor\n\ndef check_subdomain(sub, domain):\n    try:\n        dns.resolver.resolve(f\"{sub}.{domain}\", \"A\")\n        return f\"{sub}.{domain}\"\n    except:\n        return None\n```\n\n## Adding Sources\nCombine passive sources (crt.sh, VirusTotal API) with active brute-forcing for maximum coverage.\n\n## Rate Limiting\nAlways respect rate limits and get authorization before scanning targets you don't own."
+  },
+  {
+    "slug": "analyze-malware-safely",
+    "title": "How to Analyze Malware Safely",
+    "excerpt": "Using virtual machines and tools like IDA Pro for safe malware analysis. Learn the fundamentals of reverse engineering and threat analysis.",
+    "date": "2025-11-10",
+    "readTime": "12 min",
+    "tags": ["Malware Analysis", "Reverse Engineering"],
+    "category": "Malware Analysis",
+    "content": "Analyzing malware requires an isolated environment. Here's how to build one.\n\n## Setting Up Your Lab\n- Use VirtualBox or VMware with host-only networking\n- Take a clean snapshot before every analysis\n- Never analyze on your host machine\n\n## Static Analysis\nStart with strings, PE headers, and imports. Tools: `strings`, PEStudio, Detect It Easy.\n\n## Dynamic Analysis\nRun the sample and observe behavior with Process Monitor, Wireshark, and Regshot.\n\n## Reverse Engineering\nIDA Pro and Ghidra let you disassemble and understand the binary at a deep level."
+  },
+  {
+    "slug": "threat-hunting-basics",
+    "title": "Threat Hunting Basics",
+    "excerpt": "Log analysis with Splunk and ELK stack. Master the art of proactive threat hunting and learn to identify indicators of compromise.",
+    "date": "2025-11-05",
+    "readTime": "9 min",
+    "tags": ["Threat Hunting", "SIEM", "Logs"],
+    "category": "Threat Hunting",
+    "content": "Threat hunting is proactive — you assume the attacker is already inside and go looking.\n\n## The Hunting Loop\n1. Hypothesis: \"An attacker used PowerShell for lateral movement\"\n2. Query: Search logs for suspicious PowerShell activity\n3. Investigate: Analyze results for true positives\n4. Respond: Contain and remediate findings\n\n## Key Data Sources\n- Windows Event Logs (4624, 4688, 4104)\n- Sysmon\n- Network flow logs\n- EDR telemetry\n\n## Tools\nSplunk, Elastic Security, and open-source options like HELK make hunting accessible."
+  },
+  {
+    "slug": "how-to-use-osint-tools",
+    "title": "How to Use OSINT Tools",
+    "excerpt": "Comprehensive guide to Maltego and Shodan for intelligence gathering. Discover how to leverage open-source intelligence for security research.",
+    "date": "2025-10-30",
+    "readTime": "7 min",
+    "tags": ["OSINT", "Tools", "Intelligence"],
+    "category": "OSINT",
+    "content": "OSINT (Open Source Intelligence) is the art of gathering information from public sources.\n\n## Shodan\nThe search engine for internet-connected devices. Find exposed services:\n- `org:\"Target Corp\"` — devices belonging to an organization\n- `port:3389 country:US` — exposed RDP in the US\n\n## Maltego\nVisual link analysis for pivoting between entities: domains, emails, people, social profiles.\n\n## Other Essentials\n- theHarvester for email/subdomain gathering\n- SpiderFoot for automated OSINT\n- Google Dorking for creative searches\n\n## Ethics\nJust because information is public doesn't make every use ethical. Always operate within legal and moral boundaries."
+  }
+]
+
     "readTime": "8 min",
     "tags": ["Linux", "Security", "Tutorial"],
     "category": "System Security",
