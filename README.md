@@ -1,73 +1,106 @@
-# Welcome to your Lovable project
+# hasan-portfolio
 
-## Project info
+Personal cybersecurity portfolio of **Hasan (@hasan8babiker)**: CTF writeups, security articles and the projects I build while training toward a cybersecurity engineer role.
 
-**URL**: https://lovable.dev/projects/805bc3a6-53c4-4c85-bf4d-c7b4fbbd1078
+**Live site:** https://hasan8babiker.github.io/hasan-portfolio
 
-## How can I edit this code?
+---
 
-There are several ways of editing your application.
+## About
 
-**Use Lovable**
+I'm a self-taught cybersecurity learner focused on offensive security (CTFs and pentesting) and building a public body of work. I learn through TryHackMe, picoCTF and personal Python projects, and I document what I learn here.
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/805bc3a6-53c4-4c85-bf4d-c7b4fbbd1078) and start prompting.
+## What's on the site
 
-Changes made via Lovable will be committed automatically to this repo.
+- **Writeups:** TryHackMe rooms and CTF challenges, with commands, reasoning and takeaways
+- **Articles:** notes and explainers on security topics I'm studying
+- **Projects:** tools I've built, mostly in Python and Bash
 
-**Use your preferred IDE**
+## Tech Stack
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+| Area | Tools |
+|---|---|
+| Framework | React (SPA) with Vite |
+| Routing | react-router-dom |
+| UI | shadcn/ui |
+| SEO | react-helmet-async (Open Graph, Twitter cards, JSON-LD), sitemap.xml |
+| Hosting | GitHub Pages |
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+**Design:** terminal-inspired theme with a dark background (`#0A0D12`), mint green accents (`#39D98A`), an amber cursor (`#F5A623`) and monospace typography.
 
-Follow these steps:
+## Project Structure
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+```
+hasan-portfolio/
+├── public/              # static assets, sitemap.xml
+├── src/
+│   ├── components/      # shared UI components
+│   ├── pages/           # Articles, ArticleDetail, Writeups, WriteupDetail, ...
+│   ├── data/            # articles.json, writeups.json
+│   └── main.tsx
+├── index.html
+└── vite.config.ts
+```
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+Adjust the folder names to match your repo if they differ.
 
-# Step 3: Install the necessary dependencies.
-npm i
+## Adding Content
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+Writeups and articles live in JSON files. Add a new entry and the site renders it automatically.
+
+```json
+{
+  "slug": "nmap-basic-port-scans",
+  "title": "Nmap Basic Port Scans",
+  "platform": "TryHackMe",
+  "difficulty": "Easy",
+  "tags": ["nmap", "networking", "port-scanning"],
+  "content": "Short summary or full markdown of the writeup."
+}
+```
+
+| Field | Description |
+|---|---|
+| `slug` | URL-safe ID used in the route (`/writeups/<slug>`) |
+| `title` | Display title |
+| `platform` | TryHackMe, picoCTF, etc. |
+| `difficulty` | Easy, Medium or Hard |
+| `tags` | List of topic tags |
+| `content` | Writeup or article body |
+
+## Run Locally
+
+```bash
+git clone https://github.com/hasan8babiker/hasan-portfolio.git
+cd hasan-portfolio
+npm install
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+Build for production:
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+```bash
+npm run build
+npm run preview
+```
 
-**Use GitHub Codespaces**
+## Deploy
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+The site is hosted on GitHub Pages. Build the project and publish the `dist/` folder, either with a GitHub Actions workflow or a deploy script (such as `gh-pages`). Set `base` in `vite.config.ts` to `/hasan-portfolio/` so assets and routes resolve under the repo path.
 
-## What technologies are used for this project?
+## Roadmap
 
-This project is built with:
+- [x] Writeups and articles pages with detail views
+- [x] SEO metadata and sitemap
+- [ ] More TryHackMe and picoCTF writeups
+- [ ] Projects page (port scanner, banner grabber, CTF decoder)
+- [ ] Certification progress (Security+, eJPT, PNPT)
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+## Contact
 
-## How can I deploy this project?
+- GitHub: [@hasan8babiker](https://github.com/hasan8babiker)
+- Portfolio: https://hasan8babiker.github.io/hasan-portfolio
 
-Simply open [Lovable](https://lovable.dev/projects/805bc3a6-53c4-4c85-bf4d-c7b4fbbd1078) and click on Share -> Publish.
+---
 
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+*Happy Hunting.*
