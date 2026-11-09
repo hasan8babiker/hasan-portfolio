@@ -6,6 +6,12 @@ import { Github, ExternalLink } from "lucide-react";
 
 const projects = [
   {
+    title: "Pyhon Decoder Tool",
+    description: "get ctf flags fast this tool decode anything and give you clean text",
+    tools: ["Python", "SHA-256", "MD5", "ROT-13"],
+    github: "https://github.com/hasan8babiker/cyber-journey/blob/main/week1/decoder.py"
+  },
+  {
     title: "In Progress > Password Strength Checker",
     description: "Evaluates password strength based on length, complexity, and common patterns. Integrates breach checks using APIs and provides actionable feedback.",
     tools: ["Python", "Tkinter", "Regex", "APIs"],
