@@ -12,16 +12,16 @@ const projects = [
     github: "https://github.com/hasan8babiker/cyber-journey/blob/main/week1/decoder.py"
   },
   {
+    title: "Port Scanner",
+    description: "Custom port scanner for network reconnaissance. Scans open ports on target IPs to identify vulnerabilities CVE'S.",
+    tools: ["Python", "Socket", "SYS", "SSL"],
+    github: "https://github.com/hasan8babiker/python-scanner"
+  },
+  {
     title: "In Progress > Password Strength Checker",
     description: "Evaluates password strength based on length, complexity, and common patterns. Integrates breach checks using APIs and provides actionable feedback.",
     tools: ["Python", "Tkinter", "Regex", "APIs"],
     github: "https://github.com/hasan8babiker/password-strength-checker"
-  },
-  {
-    title: "COMING SOON!! > Port Scanner",
-    description: "Custom port scanner for network reconnaissance. Scans open ports on target IPs to identify vulnerabilities with stealth modes.",
-    tools: ["Python", "Socket", "Scapy", "Threading"],
-    github: "https://github.com/hasan8babiker/port-scanner"
   },
   {
     title: "COMING SOON!! > Subdomain Finder",
